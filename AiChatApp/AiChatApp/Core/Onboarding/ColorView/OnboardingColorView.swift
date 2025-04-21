@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingColorView: View {
 
     @State private var selectedColor: Color?
-    
+
     let profileColors: [Color] = [.red, .green, .orange, .blue, .mint, .purple, .cyan, .teal, .indigo]
 
     var body: some View {
@@ -25,7 +25,7 @@ struct OnboardingColorView: View {
             content: {
                 ZStack {
                     if let selectedColor {
-                        ctaButton
+                        ctaButton(selectedColor: selectedColor)
                             .transition(AnyTransition.move(edge: .bottom))
                     }
                 }
@@ -34,6 +34,7 @@ struct OnboardingColorView: View {
             }
         )
         .animation(.bouncy, value: selectedColor)
+        .toolbarVisibility(.hidden, for: .navigationBar)
     }
 
     private var colorGrid: some View {
@@ -64,9 +65,9 @@ struct OnboardingColorView: View {
         )
     }
 
-    private var ctaButton: some View {
+    private func ctaButton(selectedColor: Color) -> some View {
         NavigationLink {
-            OnboardingColorView()
+            OnboardingCompleatedView(selectedColor: selectedColor)
         } label: {
             Text("Continue")
                 .callToActionButton()
@@ -78,4 +79,5 @@ struct OnboardingColorView: View {
     NavigationStack {
         OnboardingColorView()
     }
+    .environment(AppState())
 }
