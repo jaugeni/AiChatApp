@@ -78,7 +78,7 @@ struct AvatarDescriptionBuilder {
     }
 }
 
-enum CharacterOption {
+enum CharacterOption: String, CaseIterable, Hashable {
     case male,
          female,
          alien,
