@@ -26,7 +26,7 @@ struct CategoryCellView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .addingGradientBackgroundForText()
             })
-            .clipShape(.rect(cornerRadius: cornerRadius))
+            .cornerRadius(cornerRadius)
     }
 }
 

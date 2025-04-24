@@ -15,7 +15,7 @@ extension View {
             .frame(maxWidth: .infinity)
             .frame(height: 55)
             .background(.accent)
-            .clipShape(.rect(cornerRadius: 16))
+            .cornerRadius(16)
     }
 
     func tappableBackground() -> some View {
@@ -40,5 +40,9 @@ extension View {
                 endPoint: .bottom
             )
         )
+    }
+
+    func cornerRadius(_ radius: CGFloat) -> some View {
+        clipShape(.rect(cornerRadius: radius))
     }
 }

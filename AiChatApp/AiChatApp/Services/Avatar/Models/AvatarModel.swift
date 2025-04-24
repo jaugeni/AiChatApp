@@ -74,7 +74,8 @@ struct AvatarDescriptionBuilder {
     }
 
     var characterDescription: String {
-        "A \(characterOption) that is \(characterAction) in the \(characterLocation)."
+        let prefix =  characterOption.startsWithVowel ? "An" : "A"
+        return "\(prefix) \(characterOption) that is \(characterAction) in the \(characterLocation)."
     }
 }
 
@@ -87,6 +88,15 @@ enum CharacterOption: String, CaseIterable, Hashable {
 
     static var `default`: Self {
         .male
+    }
+
+    var startsWithVowel: Bool {
+        switch self {
+        case .alien:
+            return true
+        default:
+            return false
+        }
     }
 }
 

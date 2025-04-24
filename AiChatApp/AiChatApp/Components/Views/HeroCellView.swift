@@ -42,7 +42,7 @@ struct HeroCellView: View {
                 .addingGradientBackgroundForText()
             }
         )
-        .clipShape(.rect(cornerRadius: 16))
+        .cornerRadius(16)
     }
 }
 
