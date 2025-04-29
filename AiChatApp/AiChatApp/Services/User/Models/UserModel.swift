@@ -5,7 +5,6 @@
 //  Created by Yauheni Ivaniuk on 4/25/25.
 //
 
-import Foundation
 import SwiftUI
 
 struct UserModel {

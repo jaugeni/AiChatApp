@@ -29,7 +29,6 @@ extension View {
             .cornerRadius(6)
     }
 
-
     func tappableBackground() -> some View {
         contentShape(Rectangle())
     }
