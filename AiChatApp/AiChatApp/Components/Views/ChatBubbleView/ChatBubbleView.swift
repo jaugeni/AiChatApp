@@ -14,6 +14,7 @@ struct ChatBubbleView: View {
     var backgroundColor: Color = Color(.systemGray6)
     var showImage: Bool = true
     var imageName: String?
+    var onImageTap: (() -> Void)?
 
     let offset: CGFloat = 14
 
@@ -23,6 +24,9 @@ struct ChatBubbleView: View {
                 ZStack {
                     if let imageName {
                         ImageLoaderView(urlString: imageName)
+                            .anyButton {
+                                onImageTap?()
+                            }
                     } else {
                         Rectangle()
                             .fill(.secondary)

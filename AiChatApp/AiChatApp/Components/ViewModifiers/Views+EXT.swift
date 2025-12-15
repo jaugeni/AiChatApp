@@ -56,4 +56,13 @@ extension View {
     func cornerRadius(_ radius: CGFloat) -> some View {
         clipShape(.rect(cornerRadius: radius))
     }
+
+    @ViewBuilder
+    func `if`(_ condition: Bool, transform: (Self) -> some View) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
 }

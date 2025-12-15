@@ -14,8 +14,10 @@ struct ChatView: View {
     @State private var currentUser: UserModel? = .mock
     @State private var textFieldText: String = ""
     @State private var scrolPosition: String?
+
     @State private var showAlert: AnyAppAlert?
     @State private var showChatSetting: AnyAppAlert?
+    @State private var showProfileModal: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -35,6 +37,9 @@ struct ChatView: View {
         }
         .showCustomAlert(type: .confirmationDialog, alert: $showChatSetting)
         .showCustomAlert(alert: $showAlert)
+        .showModal(showModal: $showProfileModal) {
+            profileModal(avatar: avatar)
+        }
     }
 
     private var scrollViewSection: some View {
@@ -45,7 +50,8 @@ struct ChatView: View {
                     ChatBubbleViewBuilder(
                         message: message,
                         isCurretUser: isCurrentUser,
-                        imageName: isCurrentUser ? nil : avatar?.profileImageName
+                        imageName: isCurrentUser ? nil : avatar?.profileImageName,
+                        onImageTap: onAvatarImageTapped
                     )
                     .id(message.id)
                 }
@@ -88,6 +94,20 @@ struct ChatView: View {
             .padding(.horizontal, 12)
             .padding(.vertical, 6)
             .background(Color(.secondarySystemBackground))
+    }
+
+    private func profileModal(avatar: AvatarModel?) -> some View {
+        ProfileModalView(
+            imageName: avatar?.profileImageName,
+            title: avatar?.name,
+            subtTitle: avatar?.characterOption?.rawValue.capitalized,
+            headLine: avatar?.characterDescription,
+            onXMarkTap: {
+                showProfileModal = false
+            }
+        )
+        .padding(40)
+        .transition(.slide)
     }
 
     private func onSendMessagepressed() {
@@ -133,6 +153,10 @@ struct ChatView: View {
                 )
             }
         )
+    }
+
+    private func onAvatarImageTapped() {
+        showProfileModal = true
     }
 }
 

@@ -16,6 +16,5 @@ extension Binding where Value == Bool {
                 value.wrappedValue = nil
             }
         }
-
     }
 }
