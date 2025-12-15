@@ -15,13 +15,16 @@ struct ProfileView: View {
     @State private var myAvatars: [AvatarModel] = [ ]
     @State private var isLoading: Bool = true
 
+    @State private var path: [NavigationPathOption] = []
+
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 myInfoSection
                 myAvatarsSection
             }
             .navigationTitle("Profile")
+            .navigationDestinationForCoreModule(path: $path)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     settingsButton
@@ -60,7 +63,6 @@ struct ProfileView: View {
                         ProgressView()
                     } else {
                         Text("Click + to create an avatar")
-
                     }
                 }
                 .padding(50)
@@ -76,7 +78,7 @@ struct ProfileView: View {
                         subtitle: nil
                     )
                     .anyButton(.highlight, action: {
-
+                        onAvatarTapped(avatar: avatar)
                     })
                     .removeListRowFormating()
                 }
@@ -124,6 +126,10 @@ struct ProfileView: View {
     private func onDeleteAvatar(indexSet: IndexSet) {
         guard let index = indexSet.first else { return }
         myAvatars.remove(at: index)
+    }
+
+    private func onAvatarTapped(avatar: AvatarModel) {
+        path.append(.chat(avatarId: avatar.avatarId))
     }
 }
 

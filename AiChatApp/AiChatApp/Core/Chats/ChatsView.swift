@@ -9,8 +9,10 @@ struct ChatsView: View {
 
     @State private var chats: [ChatModel] = ChatModel.mocks
 
+    @State private var path: [NavigationPathOption] = []
+
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 ForEach(chats) { chat in
                     ChatRowCellViewBuilder(
@@ -18,21 +20,26 @@ struct ChatsView: View {
                         chat: chat,
                         getAvatar: {
                             try? await Task.sleep(for: .seconds(1))
-                            return .mock
+                            return AvatarModel.mocks.randomElement()!
                         },
                         getLastChatMessage: {
                             try? await Task.sleep(for: .seconds(1))
-                            return .mock
+                            return ChatMessageModel.mocks.randomElement()!
                         }
                     )
                     .anyButton(.highlight, action: {
-
+                        onChatTapped(chat: chat)
                     })
                     .removeListRowFormating()
                 }
             }
             .navigationTitle("Chats")
+            .navigationDestinationForCoreModule(path: $path)
         }
+    }
+
+    private func onChatTapped(chat: ChatModel) {
+        path.append(.chat(avatarId: chat.avatarId))
     }
 }
 
