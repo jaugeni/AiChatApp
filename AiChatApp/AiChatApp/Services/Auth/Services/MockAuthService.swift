@@ -15,6 +15,12 @@ struct MockAuthService: AuthService {
         currentUser = user
     }
 
+    func addAuthenticatedUserListener(onListenerAttachd: (any NSObjectProtocol) -> Void) -> AsyncStream<UserAuthInfo?> {
+        AsyncStream { continuation in
+            continuation.yield(currentUser)
+        }
+    }
+
     func getAuthenticatedUser() -> UserAuthInfo? {
         currentUser
     }

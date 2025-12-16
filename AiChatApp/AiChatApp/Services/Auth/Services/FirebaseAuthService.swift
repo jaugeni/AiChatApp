@@ -11,6 +11,21 @@ import SignInAppleAsync
 
 struct FirebaseAuthService: AuthService {
 
+    func addAuthenticatedUserListener(onListenerAttachd: (any NSObjectProtocol) -> Void) -> AsyncStream<UserAuthInfo?> {
+        AsyncStream { continuation in
+            let listener = Auth.auth().addStateDidChangeListener { _, currentUser in
+                if let currentUser {
+                    let user = UserAuthInfo(from: currentUser)
+                    continuation.yield(user)
+                } else {
+                    continuation.yield(nil)
+                }
+            }
+
+            onListenerAttachd(listener)
+        }
+    }
+
     func getAuthenticatedUser() -> UserAuthInfo? {
         if let user = Auth.auth().currentUser {
             return UserAuthInfo(from: user)

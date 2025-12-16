@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
 
     @Environment(\.dismiss) var dismiss
-    @Environment(\.authService) private var authService
+    @Environment(AuthManager.self) private var authManager
     @Environment(AppState.self) private var appState
 
     @State private var isPremium: Bool = false
@@ -131,13 +131,13 @@ struct SettingsView: View {
     }
 
     func setAnonymousAccountStatus() {
-        isAnonymousUser = authService.getAuthenticatedUser()?.isAnonymous == true
+        isAnonymousUser = authManager.auth?.isAnonymous == true
     }
 
     func onSignOutPressed() {
         Task {
             do {
-                try authService.signOut()
+                try authManager.signOut()
                 await dismissScreen()
             } catch {
                 showAlert = AnyAppAlert(error: error)
@@ -168,7 +168,7 @@ struct SettingsView: View {
     private func onDeleteAccountConfirmd() {
         Task {
             do {
-                try await authService.deleteAccount()
+                try await authManager.deleteAccount()
                 await dismissScreen()
             } catch {
                 showAlert = AnyAppAlert(error: error)
@@ -193,19 +193,18 @@ fileprivate extension View {
 
 #Preview("No auth") {
     SettingsView()
-        .environment(\.authService, MockAuthService(user: nil))
+        .environment(AuthManager(service: MockAuthService(user: nil)))
         .environment(AppState())
 }
 
 #Preview("Annonymous") {
     SettingsView()
-        .environment(\.authService, MockAuthService(user: UserAuthInfo.mock(isAnonymus: true)))
+        .environment(AuthManager(service: MockAuthService(user: UserAuthInfo.mock(isAnonymus: true))))
         .environment(AppState())
 }
 
 #Preview("Not annonymous") {
     SettingsView()
-        .environment(\.authService, MockAuthService(user: UserAuthInfo.mock()))
-
+        .environment(AuthManager(service: MockAuthService(user: UserAuthInfo.mock())))
         .environment(AppState())
 }
