@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A35622E72EF1B1300084E931 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A35622E62EF1B1300084E931 /* FirebaseAuth */; };
 		A35622FC2EF1C02E0084E931 /* SignInAppleAsync in Frameworks */ = {isa = PBXBuildFile; productRef = A35622FB2EF1C02D0084E931 /* SignInAppleAsync */; };
+		A35623092EF326E20084E931 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A35623082EF326E20084E931 /* FirebaseFirestore */; };
 		A3F4E8982DB6B4BA008F48D3 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A3F4E8972DB6B4BA008F48D3 /* SDWebImageSwiftUI */; };
 		A3F4E8DB2DBFD51F008F48D3 /* SwiftfulUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = A3F4E8DA2DBFD51F008F48D3 /* SwiftfulUtilities */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 				A35622FC2EF1C02E0084E931 /* SignInAppleAsync in Frameworks */,
 				A3F4E8982DB6B4BA008F48D3 /* SDWebImageSwiftUI in Frameworks */,
 				A35622E72EF1B1300084E931 /* FirebaseAuth in Frameworks */,
+				A35623092EF326E20084E931 /* FirebaseFirestore in Frameworks */,
 				A3F4E8DB2DBFD51F008F48D3 /* SwiftfulUtilities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +138,7 @@
 				A3F4E8DA2DBFD51F008F48D3 /* SwiftfulUtilities */,
 				A35622E62EF1B1300084E931 /* FirebaseAuth */,
 				A35622FB2EF1C02D0084E931 /* SignInAppleAsync */,
+				A35623082EF326E20084E931 /* FirebaseFirestore */,
 			);
 			productName = AiChatApp;
 			productReference = A3011F402D5AE18B005A274F /* AiChatApp.app */;
@@ -698,6 +701,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A35622FA2EF1C02D0084E931 /* XCRemoteSwiftPackageReference "SignInAppleAsync" */;
 			productName = SignInAppleAsync;
+		};
+		A35623082EF326E20084E931 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A35622E52EF1B1300084E931 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 		A3F4E8972DB6B4BA008F48D3 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
