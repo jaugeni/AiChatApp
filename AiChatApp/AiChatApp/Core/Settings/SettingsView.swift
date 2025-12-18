@@ -139,7 +139,7 @@ struct SettingsView: View {
         Task {
             do {
                 try authManager.signOut()
-                try userManager.signOut()
+                userManager.signOut()
 
                 await dismissScreen()
             } catch {
@@ -199,20 +199,20 @@ fileprivate extension View {
 #Preview("No auth") {
     SettingsView()
         .environment(AuthManager(service: MockAuthService(user: nil)))
-        .environment(UserManager(service: MockUserService(user: nil)))
+        .environment(UserManager(services: MockUserServices(user: nil)))
         .environment(AppState())
 }
 
 #Preview("Annonymous") {
     SettingsView()
         .environment(AuthManager(service: MockAuthService(user: UserAuthInfo.mock(isAnonymus: true))))
-        .environment(UserManager(service: MockUserService(user: .mock)))
+        .environment(UserManager(services: MockUserServices(user: .mock)))
         .environment(AppState())
 }
 
 #Preview("Not annonymous") {
     SettingsView()
         .environment(AuthManager(service: MockAuthService(user: UserAuthInfo.mock())))
-        .environment(UserManager(service: MockUserService(user: .mock)))
+        .environment(UserManager(services: MockUserServices(user: .mock)))
         .environment(AppState())
 }

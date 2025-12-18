@@ -12,7 +12,6 @@ struct OnboardingCompleatedView: View {
     @Environment(AppState.self) private var root
     @Environment(UserManager.self) private var userManager
 
-
     @State private var isComleatingProfileSetup: Bool = false
     var selectedColor: Color = .orange
 
@@ -54,6 +53,6 @@ struct OnboardingCompleatedView: View {
 
 #Preview {
     OnboardingCompleatedView(selectedColor: .mint)
-        .environment(UserManager(service: MockUserService()))
+        .environment(UserManager(services: MockUserServices(user: .mock)))
         .environment(AppState())
 }
