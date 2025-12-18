@@ -11,6 +11,8 @@
 		A35622FC2EF1C02E0084E931 /* SignInAppleAsync in Frameworks */ = {isa = PBXBuildFile; productRef = A35622FB2EF1C02D0084E931 /* SignInAppleAsync */; };
 		A35623092EF326E20084E931 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A35623082EF326E20084E931 /* FirebaseFirestore */; };
 		A356230C2EF336240084E931 /* SwiftfulFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A356230B2EF336240084E931 /* SwiftfulFirestore */; };
+		A35623292EF484B70084E931 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = A35623282EF484B70084E931 /* OpenAI */; };
+		A35623332EF49FFE0084E931 /* Secrets.xcconfig in Sources */ = {isa = PBXBuildFile; fileRef = A35623312EF49FEA0084E931 /* Secrets.xcconfig */; };
 		A3F4E8982DB6B4BA008F48D3 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A3F4E8972DB6B4BA008F48D3 /* SDWebImageSwiftUI */; };
 		A3F4E8DB2DBFD51F008F48D3 /* SwiftfulUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = A3F4E8DA2DBFD51F008F48D3 /* SwiftfulUtilities */; };
 /* End PBXBuildFile section */
@@ -36,6 +38,7 @@
 		A3011F402D5AE18B005A274F /* AiChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AiChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3011F512D5AE18C005A274F /* AiChatAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AiChatAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3011F5B2D5AE18C005A274F /* AiChatAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AiChatAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A35623312EF49FEA0084E931 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -65,6 +68,7 @@
 				A3F4E8982DB6B4BA008F48D3 /* SDWebImageSwiftUI in Frameworks */,
 				A356230C2EF336240084E931 /* SwiftfulFirestore in Frameworks */,
 				A35622E72EF1B1300084E931 /* FirebaseAuth in Frameworks */,
+				A35623292EF484B70084E931 /* OpenAI in Frameworks */,
 				A35623092EF326E20084E931 /* FirebaseFirestore in Frameworks */,
 				A3F4E8DB2DBFD51F008F48D3 /* SwiftfulUtilities in Frameworks */,
 			);
@@ -95,6 +99,7 @@
 				A3011F5E2D5AE18C005A274F /* AiChatAppUITests */,
 				A35622F72EF1BF9C0084E931 /* Frameworks */,
 				A3011F412D5AE18B005A274F /* Products */,
+				A35623312EF49FEA0084E931 /* Secrets.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +131,7 @@
 				A3011F3D2D5AE18B005A274F /* Frameworks */,
 				A3011F3E2D5AE18B005A274F /* Resources */,
 				A3011FA92D5AEFCF005A274F /* SwiftLint Script */,
+				A35623342EF4A12F0084E931 /* Secrets Script */,
 			);
 			buildRules = (
 			);
@@ -142,6 +148,7 @@
 				A35622FB2EF1C02D0084E931 /* SignInAppleAsync */,
 				A35623082EF326E20084E931 /* FirebaseFirestore */,
 				A356230B2EF336240084E931 /* SwiftfulFirestore */,
+				A35623282EF484B70084E931 /* OpenAI */,
 			);
 			productName = AiChatApp;
 			productReference = A3011F402D5AE18B005A274F /* AiChatApp.app */;
@@ -231,6 +238,7 @@
 				A35622E52EF1B1300084E931 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A35622FA2EF1C02D0084E931 /* XCRemoteSwiftPackageReference "SignInAppleAsync" */,
 				A356230A2EF336240084E931 /* XCRemoteSwiftPackageReference "SwiftfulFirestore" */,
+				A35623272EF484B70084E931 /* XCRemoteSwiftPackageReference "OpenAI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A3011F412D5AE18B005A274F /* Products */;
@@ -289,6 +297,26 @@
 			shellScript = "if [[ -z \"$CI\" ]]; then\n    if [[ \"$(uname -m)\" == arm64 ]]; then\n        export PATH=\"/opt/homebrew/bin:$PATH\"\n    fi\n\n    # Check if running in a SwiftUI preview\n    if [ \"$XCODE_RUNNING_FOR_PREVIEWS\" != \"1\" ]; then\n        if which swiftlint > /dev/null; then\n            swiftlint # --fix && swiftlint\n        else\n            echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n        fi\n    fi\nelse \n    # Running Xcode Cloud\n    echo \"Running in Xcode Cloud. Skipping SwiftLint.\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		A35623342EF4A12F0084E931 /* Secrets Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Secrets Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n#!/bin/sh\n\nSECRETS_FILE=\"${SRCROOT}/Secrets.xcconfig\"\nPLIST=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/Info.plist\"\n\nif [ ! -f \"$SECRETS_FILE\" ]; then\n  echo \"❌ Secrets.xcconfig not found\"\n  exit 1\nfi\n\necho \"🔐 Injecting secrets into Info.plist\"\n\n# Loop through all KEY = VALUE pairs\ngrep -E '^[A-Z0-9_]+\\s*=' \"$SECRETS_FILE\" | while IFS='=' read -r KEY VALUE\ndo\n  KEY=$(echo \"$KEY\" | tr -d ' ')\n  VALUE=$(echo \"$VALUE\" | sed 's/^ *//')\n\n  if [ -z \"$VALUE\" ]; then\n    echo \"⚠️ Skipping empty value for $KEY\"\n    continue\n  fi\n\n  /usr/libexec/PlistBuddy -c \"Set :$KEY $VALUE\" \"$PLIST\" \\\n  || /usr/libexec/PlistBuddy -c \"Add :$KEY string $VALUE\" \"$PLIST\"\n\n  echo \"✅ $KEY injected\"\ndone\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -296,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A35623332EF49FFE0084E931 /* Secrets.xcconfig in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +728,14 @@
 				minimumVersion = 11.0.4;
 			};
 		};
+		A35623272EF484B70084E931 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.7;
+			};
+		};
 		A3F4E8962DB6B4BA008F48D3 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -737,6 +774,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A356230A2EF336240084E931 /* XCRemoteSwiftPackageReference "SwiftfulFirestore" */;
 			productName = SwiftfulFirestore;
+		};
+		A35623282EF484B70084E931 /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A35623272EF484B70084E931 /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
 		};
 		A3F4E8972DB6B4BA008F48D3 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
