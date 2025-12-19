@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CharacterOption: String, CaseIterable, Hashable {
+enum CharacterOption: String, CaseIterable, Hashable, Codable {
     case male,
          female,
          alien,
@@ -35,7 +35,7 @@ enum CharacterOption: String, CaseIterable, Hashable {
     }
 }
 
-enum CharacterAction: String, CaseIterable, Hashable {
+enum CharacterAction: String, CaseIterable, Hashable, Codable {
     case smiling,
          sitting,
          eating,
@@ -53,7 +53,7 @@ enum CharacterAction: String, CaseIterable, Hashable {
     }
 }
 
-enum CharacterLocation: String, CaseIterable, Hashable {
+enum CharacterLocation: String, CaseIterable, Hashable, Codable {
     case park,
          mall,
          museum,

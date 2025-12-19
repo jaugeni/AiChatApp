@@ -22,11 +22,12 @@ struct TextValidationHelper {
         }
     }
 
-    static func checkIfTextIsValid(text: String) throws {
-        let minimunCCharacterCount = 4
-
-        guard text.count >= minimunCCharacterCount else {
-            throw TextValidationError.notEnoughtCharacters(min: minimunCCharacterCount)
+    static func checkIfTextIsValid(
+        text: String,
+        minimunCharacterCount: Int = 4
+    ) throws {
+        guard text.count >= minimunCharacterCount else {
+            throw TextValidationError.notEnoughtCharacters(min: minimunCharacterCount)
         }
 
         let badWords: [String] = [
