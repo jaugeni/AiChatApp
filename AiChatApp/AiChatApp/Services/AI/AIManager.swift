@@ -28,7 +28,7 @@ struct OpenAIServer: AIService {
     func generateImage(input: String) async throws -> UIImage {
         let query = ImagesQuery(
             prompt: input,
-            model: .gpt4,
+//            model: .gpt4,
             n: 1,
             responseFormat: .b64_json,
             size: ._512,
